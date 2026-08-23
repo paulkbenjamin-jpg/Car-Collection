@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import type { Car, CarInput } from "@/lib/types";
+import { CLASSIFICATIONS, type Car, type CarInput } from "@/lib/types";
 
 const emptyCar: CarInput = {
   lot_number: null,
@@ -15,6 +15,7 @@ const emptyCar: CarInput = {
   mileage: null,
   engine: "",
   transmission: "",
+  classification: null,
   notes: "",
   photos: [],
 };
@@ -54,6 +55,7 @@ export default function CarForm({ car }: { car?: Car }) {
           mileage: car.mileage,
           engine: car.engine,
           transmission: car.transmission,
+          classification: car.classification,
           notes: car.notes,
           photos: car.photos,
         }
@@ -219,6 +221,26 @@ export default function CarForm({ car }: { car?: Car }) {
           />
         </Field>
       </div>
+
+      <Field label="Vehicle Classification">
+        <select
+          className={inputClass}
+          value={form.classification ?? ""}
+          onChange={(e) =>
+            update(
+              "classification",
+              e.target.value ? (e.target.value as CarInput["classification"]) : null
+            )
+          }
+        >
+          <option value="">—</option>
+          {CLASSIFICATIONS.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </Field>
 
       <Field label="Notes">
         <textarea

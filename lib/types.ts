@@ -1,3 +1,13 @@
+export const CLASSIFICATIONS = [
+  "Unrestored (Original)",
+  "Restored",
+  "Custom (Modified)",
+  "Restomod",
+  "Survivor",
+] as const;
+
+export type Classification = (typeof CLASSIFICATIONS)[number];
+
 export type Car = {
   id: string;
   lot_number: number | null;
@@ -10,6 +20,7 @@ export type Car = {
   mileage: number | null;
   engine: string | null;
   transmission: string | null;
+  classification: Classification | null;
   notes: string | null;
   photos: string[];
   created_at: string;

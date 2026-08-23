@@ -15,6 +15,7 @@ create table if not exists cars (
   mileage int,
   engine text,
   transmission text,
+  classification text,
   notes text,
   photos text[] default '{}',
   created_at timestamptz default now()
@@ -29,6 +30,11 @@ create policy "Public read access" on cars
 -- Deliberately no insert/update/delete policy for the anon role.
 -- Writes only happen through /api/cars and /api/upload, which use the
 -- service role key server-side and therefore bypass RLS entirely.
+
+-- ---- Migration: adding the Vehicle Classification field ----
+-- If your `cars` table already existed before this field was added, run
+-- this once in the SQL Editor (safe to re-run; no-op if the column exists):
+-- alter table cars add column if not exists classification text;
 
 -- ---- Storage ----
 -- After running this file, also go to Storage in the Supabase dashboard

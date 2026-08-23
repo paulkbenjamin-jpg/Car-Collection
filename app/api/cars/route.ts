@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       mileage: body.mileage,
       engine: body.engine,
       transmission: body.transmission,
+      classification: body.classification,
       notes: body.notes,
       photos: body.photos ?? [],
     })
