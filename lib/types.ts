@@ -8,6 +8,10 @@ export const CLASSIFICATIONS = [
 
 export type Classification = (typeof CLASSIFICATIONS)[number];
 
+export const VEHICLE_TYPES = ["Car", "Truck", "Motorcycle"] as const;
+
+export type VehicleType = (typeof VEHICLE_TYPES)[number];
+
 export type Car = {
   id: string;
   lot_number: number | null;
@@ -21,6 +25,7 @@ export type Car = {
   engine: string | null;
   transmission: string | null;
   classification: Classification | null;
+  vehicle_type: VehicleType | null;
   notes: string | null;
   photos: string[];
   created_at: string;

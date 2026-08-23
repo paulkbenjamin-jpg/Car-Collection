@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { CLASSIFICATIONS, type Car, type CarInput } from "@/lib/types";
+import { CLASSIFICATIONS, VEHICLE_TYPES, type Car, type CarInput } from "@/lib/types";
 
 const emptyCar: CarInput = {
   lot_number: null,
@@ -16,6 +16,7 @@ const emptyCar: CarInput = {
   engine: "",
   transmission: "",
   classification: null,
+  vehicle_type: null,
   notes: "",
   photos: [],
 };
@@ -56,6 +57,7 @@ export default function CarForm({ car }: { car?: Car }) {
           engine: car.engine,
           transmission: car.transmission,
           classification: car.classification,
+          vehicle_type: car.vehicle_type,
           notes: car.notes,
           photos: car.photos,
         }
@@ -132,6 +134,25 @@ export default function CarForm({ car }: { car?: Car }) {
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl">
       <div className="grid grid-cols-2 gap-x-4">
+        <Field label="Vehicle Type">
+          <select
+            className={inputClass}
+            value={form.vehicle_type ?? ""}
+            onChange={(e) =>
+              update(
+                "vehicle_type",
+                e.target.value ? (e.target.value as CarInput["vehicle_type"]) : null
+              )
+            }
+          >
+            <option value="">—</option>
+            {VEHICLE_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </Field>
         <Field label="Lot #">
           <input
             type="number"
@@ -142,6 +163,9 @@ export default function CarForm({ car }: { car?: Car }) {
             }
           />
         </Field>
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-4">
         <Field label="Year">
           <input
             type="number"

@@ -16,6 +16,7 @@ create table if not exists cars (
   engine text,
   transmission text,
   classification text,
+  vehicle_type text,
   notes text,
   photos text[] default '{}',
   created_at timestamptz default now()
@@ -35,6 +36,7 @@ create policy "Public read access" on cars
 -- If your `cars` table already existed before this field was added, run
 -- this once in the SQL Editor (safe to re-run; no-op if the column exists):
 -- alter table cars add column if not exists classification text;
+-- alter table cars add column if not exists vehicle_type text;
 
 -- ---- Storage ----
 -- After running this file, also go to Storage in the Supabase dashboard

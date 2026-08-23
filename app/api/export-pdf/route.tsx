@@ -246,6 +246,7 @@ function CarPage({ car, index }: { car: Car; index: number }) {
       )}
 
       <View style={styles.specGrid}>
+        <Spec label="Vehicle Type" value={car.vehicle_type} />
         <Spec label="Mileage" value={car.mileage != null ? `${car.mileage.toLocaleString()} mi` : null} />
         <Spec label="Color" value={car.color} />
         <Spec label="Engine" value={car.engine} />

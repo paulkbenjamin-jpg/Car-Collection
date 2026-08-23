@@ -98,6 +98,7 @@ export default async function CarDetailPage({
         </div>
 
         <div className="brass-rule mb-2" />
+        <Spec label="Vehicle Type" value={c.vehicle_type} />
         <Spec label="Classification" value={c.classification} />
         <Spec label="Color" value={c.color} />
         <Spec label="Engine" value={c.engine} />

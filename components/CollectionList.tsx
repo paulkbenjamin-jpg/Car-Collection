@@ -38,6 +38,7 @@ const selectClass =
 export default function CollectionList({ cars }: { cars: Car[] }) {
   const [search, setSearch] = useState("");
   const [classification, setClassification] = useState("");
+  const [vehicleType, setVehicleType] = useState("");
   const [make, setMake] = useState("");
   const [sort, setSort] = useState<SortKey>("lot");
 
@@ -52,11 +53,19 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
       ).sort() as string[],
     [cars]
   );
+  const vehicleTypes = useMemo(
+    () =>
+      Array.from(
+        new Set(cars.map((c) => c.vehicle_type).filter(Boolean))
+      ).sort() as string[],
+    [cars]
+  );
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     let list = cars.filter((c) => {
       if (classification && c.classification !== classification) return false;
+      if (vehicleType && c.vehicle_type !== vehicleType) return false;
       if (make && c.make !== make) return false;
       if (q) {
         const haystack = [c.year, c.make, c.model, c.trim, c.color]
@@ -87,9 +96,9 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
     });
 
     return list;
-  }, [cars, search, classification, make, sort]);
+  }, [cars, search, classification, vehicleType, make, sort]);
 
-  const hasFilters = search || classification || make;
+  const hasFilters = search || classification || vehicleType || make;
 
   return (
     <section className="max-w-4xl mx-auto px-6">
@@ -101,6 +110,19 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
           placeholder="Search year, make, model…"
           className={`${selectClass} flex-1 min-w-[180px] placeholder:text-[var(--color-paper-dim)]`}
         />
+
+        <select
+          value={vehicleType}
+          onChange={(e) => setVehicleType(e.target.value)}
+          className={selectClass}
+        >
+          <option value="">All vehicle types</option>
+          {vehicleTypes.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
 
         <select
           value={classification}
@@ -142,6 +164,7 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
             onClick={() => {
               setSearch("");
               setClassification("");
+              setVehicleType("");
               setMake("");
             }}
             className="text-[var(--color-brass)] text-sm hover:text-[var(--color-brass-bright)]"
@@ -195,7 +218,8 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
               ) : null}
             </h2>
             <p className="text-[var(--color-paper-dim)] text-sm mt-0.5 truncate">
-              {[car.classification, car.color].filter(Boolean).join(" · ") || "—"}
+              {[car.vehicle_type, car.classification, car.color].filter(Boolean).join(" · ") ||
+                "—"}
             </p>
           </div>
 

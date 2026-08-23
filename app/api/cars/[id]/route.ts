@@ -24,6 +24,7 @@ export async function PUT(
       engine: body.engine,
       transmission: body.transmission,
       classification: body.classification,
+      vehicle_type: body.vehicle_type,
       notes: body.notes,
       photos: body.photos ?? [],
     })
