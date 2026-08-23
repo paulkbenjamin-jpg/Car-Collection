@@ -28,12 +28,12 @@ export default async function CollectionPage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-ink)]">
-      <header className="max-w-4xl mx-auto px-6 pt-16 pb-10">
+      <header className="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
         <Logo />
         <p className="lot-number text-xs uppercase tracking-[0.25em] mt-4">
           Private Inventory
         </p>
-        <p className="text-[var(--color-paper-dim)] mt-3 text-sm max-w-md">
+        <p className="text-[var(--color-paper-dim)] mt-3 text-sm max-w-md mx-auto">
           {list.length} motorcar{list.length === 1 ? "" : "s"} catalogued
           below, each with full specification, mileage, and condition
           photography.
@@ -100,7 +100,9 @@ export default async function CollectionPage() {
       </section>
 
       <footer className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <p className="text-[var(--color-paper-dim)] text-xs">
+        <p className="text-[var(--color-paper)] text-sm">Dick Michael</p>
+        <p className="text-[var(--color-paper-dim)] text-sm mt-1">(415) 608-4701</p>
+        <p className="text-[var(--color-paper-dim)] text-xs mt-6">
           Shared for review purposes.
         </p>
       </footer>

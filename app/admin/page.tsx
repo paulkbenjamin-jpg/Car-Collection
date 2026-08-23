@@ -33,7 +33,7 @@ export default function AdminLoginPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm bg-[var(--color-panel)] border border-[var(--color-line)] rounded-lg p-8"
       >
-        <Logo size="sm" reflection={false} />
+        <Logo size="sm" />
         <p className="lot-number text-xs uppercase tracking-[0.25em] mt-4">
           Admin
         </p>
