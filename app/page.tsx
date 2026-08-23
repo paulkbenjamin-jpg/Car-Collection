@@ -97,9 +97,6 @@ export default async function CollectionPage() {
       <footer className="max-w-4xl mx-auto px-6 py-16 text-center">
         <p className="text-[var(--color-paper)] text-sm">Dick Michael</p>
         <p className="text-[var(--color-paper-dim)] text-sm mt-1">(415) 608-4701</p>
-        <p className="text-[var(--color-paper-dim)] text-xs mt-6">
-          Shared for review purposes.
-        </p>
       </footer>
     </main>
   );
