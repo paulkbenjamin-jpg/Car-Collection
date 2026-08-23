@@ -7,7 +7,7 @@ export default function Logo({ size = "lg" }: LogoProps) {
 
   return (
     <span
-      className={`font-[family-name:var(--font-slab)] ${textSize} tracking-wide text-[var(--color-brass)] select-none`}
+      className={`font-[family-name:var(--font-slab)] font-bold ${textSize} tracking-[0.08em] text-[var(--color-brass)] select-none`}
     >
       THE DICKSONIAN
     </span>
