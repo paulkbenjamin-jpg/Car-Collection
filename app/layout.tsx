@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono, Inter } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Inter, Alfa_Slab_One } from "next/font/google";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -7,6 +7,12 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+});
+
+const alfaSlabOne = Alfa_Slab_One({
+  variable: "--font-slab",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${jetbrainsMono.variable} ${inter.variable} antialiased`}
+        className={`${fraunces.variable} ${jetbrainsMono.variable} ${inter.variable} ${alfaSlabOne.variable} antialiased`}
       >
         {children}
       </body>

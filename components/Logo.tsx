@@ -7,9 +7,9 @@ export default function Logo({ size = "lg" }: LogoProps) {
 
   return (
     <span
-      className={`font-[family-name:var(--font-display)] ${textSize} tracking-wide text-[var(--color-brass)] select-none`}
+      className={`font-[family-name:var(--font-slab)] ${textSize} tracking-wide text-[var(--color-brass)] select-none`}
     >
-      The Dicksonian
+      THE DICKSONIAN
     </span>
   );
 }
