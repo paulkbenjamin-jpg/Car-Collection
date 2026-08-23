@@ -60,10 +60,7 @@ export default async function CarDetailPage({
       </div>
 
       <header className="max-w-3xl mx-auto px-6 pt-8 pb-6">
-        <p className="lot-number text-xs uppercase tracking-[0.25em]">
-          Lot {String(c.lot_number ?? "—").padStart(2, "0")}
-        </p>
-        <h1 className="font-[family-name:var(--font-display)] italic text-3xl md:text-5xl mt-3 text-[var(--color-paper)]">
+        <h1 className="font-[family-name:var(--font-display)] italic text-3xl md:text-5xl text-[var(--color-paper)]">
           {c.year} {c.make} {c.model}
         </h1>
         {c.trim && (

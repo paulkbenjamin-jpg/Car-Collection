@@ -14,7 +14,6 @@ export type VehicleType = (typeof VEHICLE_TYPES)[number];
 
 export type Car = {
   id: string;
-  lot_number: number | null;
   year: number | null;
   make: string;
   model: string | null;

@@ -10,7 +10,6 @@ export default async function CollectionPage() {
   const { data: cars } = await supabase
     .from("cars")
     .select("*")
-    .order("lot_number", { ascending: true, nullsFirst: false })
     .order("created_at", { ascending: true });
 
   const list = (cars ?? []) as Car[];

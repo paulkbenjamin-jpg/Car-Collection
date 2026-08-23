@@ -5,7 +5,6 @@ create extension if not exists "pgcrypto";
 
 create table if not exists cars (
   id uuid primary key default gen_random_uuid(),
-  lot_number int,
   year int,
   make text not null,
   model text,
@@ -37,6 +36,10 @@ create policy "Public read access" on cars
 -- this once in the SQL Editor (safe to re-run; no-op if the column exists):
 -- alter table cars add column if not exists classification text;
 -- alter table cars add column if not exists vehicle_type text;
+
+-- ---- Migration: removing the Lot # field ----
+-- Run this once in the SQL Editor if your `cars` table still has it:
+-- alter table cars drop column if exists lot_number;
 
 -- ---- Storage ----
 -- After running this file, also go to Storage in the Supabase dashboard

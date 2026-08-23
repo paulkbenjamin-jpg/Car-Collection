@@ -13,7 +13,6 @@ export async function PUT(
   const { data, error } = await supabase
     .from("cars")
     .update({
-      lot_number: body.lot_number,
       year: body.year,
       make: body.make,
       model: body.model,

@@ -88,15 +88,9 @@ const styles = StyleSheet.create({
   topRow: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
     marginBottom: 16,
-  },
-  lot: {
-    fontFamily: "Courier-Bold",
-    fontSize: 10,
-    color: "#8a6a3d",
-    letterSpacing: 1,
   },
   brand: {
     fontFamily: "Helvetica",
@@ -213,14 +207,12 @@ function Spec({ label, value }: { label: string; value: string | null }) {
   );
 }
 
-function CarPage({ car, index }: { car: Car; index: number }) {
-  const lot = String(car.lot_number ?? index + 1).padStart(2, "0");
+function CarPage({ car }: { car: Car }) {
   const [mainPhoto, ...restPhotos] = car.photos ?? [];
 
   return (
     <Page size="A4" style={styles.page}>
       <View style={styles.topRow}>
-        <Text style={styles.lot}>LOT {lot}</Text>
         <Text style={styles.brand}>The Dicksonian</Text>
       </View>
 
@@ -277,7 +269,6 @@ export async function GET() {
   const { data: cars, error } = await supabase
     .from("cars")
     .select("*")
-    .order("lot_number", { ascending: true, nullsFirst: false })
     .order("created_at", { ascending: true });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
@@ -307,8 +298,8 @@ export async function GET() {
           </Text>
         </Page>
 
-        {withResolvedPhotos.map((car, i) => (
-          <CarPage key={car.id} car={car} index={i} />
+        {withResolvedPhotos.map((car) => (
+          <CarPage key={car.id} car={car} />
         ))}
       </Document>
     );

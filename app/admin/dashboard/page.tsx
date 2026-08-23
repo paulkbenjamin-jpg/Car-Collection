@@ -62,15 +62,12 @@ export default function AdminDashboardPage() {
             No cars yet. Add the first one above.
           </p>
         )}
-        {cars?.map((car, i) => (
+        {cars?.map((car) => (
           <Link
             key={car.id}
             href={`/admin/dashboard/${car.id}`}
             className="flex items-center gap-4 py-5 border-b border-[var(--color-line)] hover:bg-[var(--color-panel)] transition-colors -mx-3 px-3 rounded"
           >
-            <span className="lot-number text-sm w-8 shrink-0">
-              {String(car.lot_number ?? i + 1).padStart(2, "0")}
-            </span>
             <div className="w-16 h-11 shrink-0 rounded overflow-hidden bg-[var(--color-panel-raised)] border border-[var(--color-line)]">
               {car.photos?.[0] && (
                 // eslint-disable-next-line @next/next/no-img-element

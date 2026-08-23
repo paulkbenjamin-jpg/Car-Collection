@@ -5,7 +5,6 @@ import { useState } from "react";
 import { CLASSIFICATIONS, VEHICLE_TYPES, type Car, type CarInput } from "@/lib/types";
 
 const emptyCar: CarInput = {
-  lot_number: null,
   year: null,
   make: "",
   model: "",
@@ -46,7 +45,6 @@ export default function CarForm({ car }: { car?: Car }) {
   const [form, setForm] = useState<CarInput>(
     car
       ? {
-          lot_number: car.lot_number,
           year: car.year,
           make: car.make,
           model: car.model,
@@ -153,19 +151,6 @@ export default function CarForm({ car }: { car?: Car }) {
             ))}
           </select>
         </Field>
-        <Field label="Lot #">
-          <input
-            type="number"
-            className={inputClass}
-            value={form.lot_number ?? ""}
-            onChange={(e) =>
-              update("lot_number", e.target.value ? Number(e.target.value) : null)
-            }
-          />
-        </Field>
-      </div>
-
-      <div className="grid grid-cols-2 gap-x-4">
         <Field label="Year">
           <input
             type="number"

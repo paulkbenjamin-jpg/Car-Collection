@@ -10,7 +10,6 @@ export async function GET() {
   const { data, error } = await supabase
     .from("cars")
     .select("*")
-    .order("lot_number", { ascending: true, nullsFirst: false })
     .order("created_at", { ascending: true });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
@@ -25,7 +24,6 @@ export async function POST(request: NextRequest) {
   const { data, error } = await supabase
     .from("cars")
     .insert({
-      lot_number: body.lot_number,
       year: body.year,
       make: body.make,
       model: body.model,

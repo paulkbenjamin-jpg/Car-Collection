@@ -4,16 +4,9 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Car } from "@/lib/types";
 
-type SortKey =
-  | "lot"
-  | "year_desc"
-  | "year_asc"
-  | "make"
-  | "mileage_asc"
-  | "mileage_desc";
+type SortKey = "year_desc" | "year_asc" | "make" | "mileage_asc" | "mileage_desc";
 
 const SORT_LABELS: Record<SortKey, string> = {
-  lot: "Lot #",
   year_desc: "Year (newest first)",
   year_asc: "Year (oldest first)",
   make: "Make (A–Z)",
@@ -40,7 +33,7 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
   const [classification, setClassification] = useState("");
   const [vehicleType, setVehicleType] = useState("");
   const [make, setMake] = useState("");
-  const [sort, setSort] = useState<SortKey>("lot");
+  const [sort, setSort] = useState<SortKey>("year_desc");
 
   const makes = useMemo(
     () => Array.from(new Set(cars.map((c) => c.make).filter(Boolean))).sort(),
@@ -79,8 +72,6 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
 
     list = [...list].sort((a, b) => {
       switch (sort) {
-        case "year_desc":
-          return (b.year ?? 0) - (a.year ?? 0);
         case "year_asc":
           return (a.year ?? 0) - (b.year ?? 0);
         case "make":
@@ -89,9 +80,9 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
           return (a.mileage ?? Infinity) - (b.mileage ?? Infinity);
         case "mileage_desc":
           return (b.mileage ?? -1) - (a.mileage ?? -1);
-        case "lot":
+        case "year_desc":
         default:
-          return (a.lot_number ?? Infinity) - (b.lot_number ?? Infinity);
+          return (b.year ?? 0) - (a.year ?? 0);
       }
     });
 
@@ -189,16 +180,12 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
         </p>
       )}
 
-      {filtered.map((car, i) => (
+      {filtered.map((car) => (
         <Link
           key={car.id}
           href={`/car/${car.id}`}
           className="group flex items-center gap-5 py-6 border-b border-[var(--color-line)] hover:bg-[var(--color-panel)] transition-colors -mx-3 px-3 rounded"
         >
-          <span className="lot-number text-sm w-10 shrink-0">
-            {String(car.lot_number ?? i + 1).padStart(2, "0")}
-          </span>
-
           <div className="w-20 h-14 shrink-0 rounded overflow-hidden bg-[var(--color-panel-raised)] border border-[var(--color-line)]">
             {car.photos?.[0] ? (
               // eslint-disable-next-line @next/next/no-img-element
