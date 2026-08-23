@@ -33,11 +33,6 @@ export default async function CollectionPage() {
         <p className="lot-number text-xs uppercase tracking-[0.25em] mt-4">
           Private Inventory
         </p>
-        <p className="text-[var(--color-paper-dim)] mt-3 text-sm max-w-md mx-auto">
-          {list.length} motorcar{list.length === 1 ? "" : "s"} catalogued
-          below, each with full specification, mileage, and condition
-          photography.
-        </p>
       </header>
 
       <div className="brass-rule max-w-4xl mx-auto" />
