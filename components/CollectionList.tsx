@@ -164,12 +164,20 @@ export default function CollectionList({ cars }: { cars: Car[] }) {
           </button>
         )}
 
-        <a
-          href="/api/export-pdf"
-          className="ml-auto bg-[var(--color-brass)] hover:bg-[var(--color-brass-bright)] text-[var(--color-ink)] text-sm font-medium rounded px-4 py-2 transition-colors whitespace-nowrap"
-        >
-          Export PDF
-        </a>
+        <div className="ml-auto flex items-center gap-2">
+          <a
+            href="/api/export-xlsx"
+            className="bg-[var(--color-panel-raised)] border border-[var(--color-line)] hover:border-[var(--color-brass)] text-[var(--color-paper)] text-sm font-medium rounded px-4 py-2 transition-colors whitespace-nowrap"
+          >
+            Export XLS
+          </a>
+          <a
+            href="/api/export-pdf"
+            className="bg-[var(--color-brass)] hover:bg-[var(--color-brass-bright)] text-[var(--color-ink)] text-sm font-medium rounded px-4 py-2 transition-colors whitespace-nowrap"
+          >
+            Export PDF
+          </a>
+        </div>
       </div>
 
       <div className="brass-rule" />
